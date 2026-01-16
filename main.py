@@ -43,7 +43,6 @@ def render_post(p, is_admin = False):
         delete_btn = Button("Delete", 
                             hx_delete=f"/posts/{p.id}", 
                             hx_confirm="Are you sure?", 
-                            target_id=f"post-{p.id}", 
                             hx_swap="delete",
                             cls="outline contrast",
                             style="padding: 0.2rem 0.5rem; font-size: 0.8rem;")
@@ -113,7 +112,7 @@ def home(session):
     post_list = [render_post(p, is_admin) for p in posts(order_by='id desc')]
     
     return Titled(
-        A(config["blogName"], href="/"), # This makes the title a link to root
+        A(config["blogName"]),
         H3(config["blogDescription"]),
         P(admin_tools),
         P(login_btn),
